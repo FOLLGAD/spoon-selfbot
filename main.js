@@ -5,7 +5,9 @@ const stamps = require("./timestamps.json")
 let lastTime = null
   console.log("HELLo 2")
 
-const fn = () => {
+const wait = (ms = 1000) => new Promise(r => setTimeout(r, ms))
+
+const fn = async () => {
   console.log("HELLo")
   const hr = new Date().getHours().toString().padStart(2, "0")
   const min = new Date().getMinutes().toString().padStart(2, "0");
@@ -23,8 +25,9 @@ const fn = () => {
 
     const client = new Client(); // All partials are loaded automatically
     client.on('ready', async () => {
-      // const gdm = await client.channels.fetch("439815556246274078") // the boys
-      const gdm = await client.channels.fetch("985863940414271498") // test
+      await wait(Math.random() * 1000);
+      const gdm = await client.channels.fetch("439815556246274078") // the boys
+      // const gdm = await client.channels.fetch("985863940414271498") // test
       await gdm.send(msg)
       client.destroy()
     })
